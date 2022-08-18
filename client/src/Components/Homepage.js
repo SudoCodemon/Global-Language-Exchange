@@ -1,15 +1,19 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import img from "../Images/banner.jpg";
 
-function Homepage() {
+function Homepage({ user, onHandleLogOut }) {
   return (
     <>
       <HeaderImg>
         <HeadingDiv>
           <Title to="/">Global Language Exchange</Title>{" "}
-          <SignupButton to="/login">Sign up / Log in</SignupButton>
+          {user ? <Title>Welcome! {user && user.username}</Title> : null}
+          {user ? (
+            <LogoutBtn onClick={onHandleLogOut}> Log Out </LogoutBtn>
+          ) : (
+            <SignupButton to="/login">Sign up / Log in</SignupButton>
+          )}
         </HeadingDiv>
         <Headerbody>
           <Headerdescription>
@@ -99,4 +103,22 @@ const SearchDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const LogoutBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: #ff6a73;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  height: 48px;
+  width: 197px;
+  color: white;
+  margin-top: 30px;
+  margin-right: 147px;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
 `;

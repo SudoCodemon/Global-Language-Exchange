@@ -1,7 +1,16 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import SignupForm from "./SignupForm";
+import LoginForm from "./LoginForm";
 
-function Loginpage() {
+function Loginpage({ onLogin }) {
+  const [showLogForm, setShowLogForm] = useState(false);
+
+  function onHandleLogInClick() {
+    setShowLogForm(!showLogForm);
+  }
+
   return (
     <PageContainer>
       <LeftSide>
@@ -17,10 +26,15 @@ function Loginpage() {
       </LeftSide>
       <RightSide>
         <ButtonContainer>
-          <LoginBtn>Log in</LoginBtn>
+          <LoginBtn onClick={onHandleLogInClick}>Log in</LoginBtn>
           <Pipe>|</Pipe>
-          <SignUpBtn>Sign up</SignUpBtn>
+          <SignUpBtn onClick={onHandleLogInClick}>Sign up</SignUpBtn>
         </ButtonContainer>
+        {!showLogForm ? (
+          <LoginForm onLogin={onLogin} />
+        ) : (
+          <SignupForm onLogin={onLogin} />
+        )}
       </RightSide>
     </PageContainer>
   );
