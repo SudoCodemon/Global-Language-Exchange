@@ -1,14 +1,25 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import img from "../Images/banner.jpg";
+import WordCard from "./WordCard";
 
 function Homepage({ user, onHandleLogOut }) {
+  const [wordList, setWordList] = useState(null);
+  console.log(wordList);
+  useEffect(() => {
+    fetch("/words")
+      .then((res) => res.json())
+      .then((data) => setWordList(data));
+  }, []);
   return (
     <>
       <HeaderImg>
         <HeadingDiv>
           <Title to="/">Global Language Exchange</Title>{" "}
-          {user ? <Title>Welcome! {user && user.username}</Title> : null}
+          {user ? (
+            <WelcomeMessage>Welcome! {user && user.username}</WelcomeMessage>
+          ) : null}
           {user ? (
             <LogoutBtn onClick={onHandleLogOut}> Log Out </LogoutBtn>
           ) : (
@@ -24,6 +35,20 @@ function Homepage({ user, onHandleLogOut }) {
       <SearchDiv>
         <SearchField placeholder="Search for a word"></SearchField>
       </SearchDiv>
+      <SubmitAWord>
+        {user ? (
+          <SubmitWordBtn to="/submit-word">Submit a word</SubmitWordBtn>
+        ) : null}
+      </SubmitAWord>
+      <CardContainer>
+        <Border></Border>
+      </CardContainer>
+      <CardContainer>
+        {wordList &&
+          wordList.map((word) => {
+            return <WordCard word={word} />;
+          })}
+      </CardContainer>
     </>
   );
 }
@@ -53,6 +78,13 @@ const Title = styled(Link)`
   font-size: 20px;
   font-weight: 700;
   text-decoration: none;
+`;
+
+const WelcomeMessage = styled.h1`
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  padding-top: 20px;
 `;
 
 const SignupButton = styled(Link)`
@@ -121,4 +153,47 @@ const LogoutBtn = styled.button`
   margin-right: 147px;
   text-decoration: none;
   font-family: "Poppins", sans-serif;
+`;
+
+const SubmitAWord = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const SubmitWordBtn = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: #ff6a73;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  height: 48px;
+  width: 197px;
+  color: white;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  margin-top: 50px;
+`;
+
+const CardContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+`;
+
+const Border = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 5px solid #adadad;
+  border-width: thin;
+  width 75vw;
 `;

@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  has_many :words
+  has_many :comments
+  has_many :likes
+  has_many :words, through: :comments
 
   has_secure_password
 
