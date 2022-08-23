@@ -6,7 +6,7 @@ class WordsController < ApplicationController
 
   def show
     word = find_word
-    render json: word, status: :ok
+    render json: word, status: :ok, serializer: WordwithcommentsSerializer
   end
 
   def create

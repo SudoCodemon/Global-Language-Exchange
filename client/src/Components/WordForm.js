@@ -123,6 +123,7 @@ const Form = styled.form`
 `;
 
 const Label = styled.label`
+  margin-top: 20px;
   margin-bottom: 0.5em;
   color: black;
   display: block;
@@ -143,8 +144,8 @@ const LogInSubmit = styled.button`
   border-radius: 10px;
   height: 50px;
   width: 431px;
-  margin-top: 10px;
   color: white;
+  margin-top: 20px;
   font-weight: 700;
   font-size: 15px;
 `;

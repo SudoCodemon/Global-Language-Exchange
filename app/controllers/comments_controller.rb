@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.permit(:comment)
+    params.permit(:comment, :user_id, :word_id)
   end
 
   def find_comment

@@ -62,6 +62,8 @@ const Input = styled.input`
   border-radius: 10px;
   height: 50px;
   width: 431px;
+  border-color: #d6d6d6;
+  border-width: 1.5px;
   font-family: "Poppins", sans-serif;
   &:focus {
     outline: none;

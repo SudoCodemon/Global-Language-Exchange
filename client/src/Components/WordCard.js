@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { BsFillPlayFill, BsPauseFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-function WordCard({ word }) {
+function WordCard({ word, onHandleCommentClick }) {
   const audioElem = useRef();
   const [isPlaying, setIsPlaying] = useState(false);
   function handleClick() {
@@ -17,6 +17,10 @@ function WordCard({ word }) {
       audioElem.current.pause();
     }
   }, [isPlaying]);
+
+  function handleComClick() {
+    onHandleCommentClick(word);
+  }
 
   return (
     <CardWrapper>
@@ -36,7 +40,7 @@ function WordCard({ word }) {
         </PlayButton>
       </CardSection>
       <CardSection>
-        <WordButton to="/wordpage">Comment</WordButton>
+        <WordButton onClick={handleComClick}>Comment</WordButton>
       </CardSection>
     </CardWrapper>
   );
@@ -79,7 +83,7 @@ const CardSection = styled.div`
   align-items: center;
 `;
 
-const WordButton = styled(Link)`
+const WordButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;

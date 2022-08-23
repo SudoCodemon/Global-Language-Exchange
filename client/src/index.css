@@ -11,3 +11,44 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.animation::after {
+  content: 'Hello';
+  animation: greeting infinite 8s 1s;
+}
+
+@keyframes greeting {
+	0% {
+		content: 'Hey there';
+	}
+	10% {
+		content: '你好';
+	}
+	20% {
+		content: 'こんにちは';
+	}
+	30% {
+		content: 'Aloha';
+	}
+	40% {
+		content: 'привіт';
+	}
+	50% {
+		content: 'Hallo';
+	}
+	60% {
+		content: 'Dia dhuit';
+	}
+	70% {
+		content: 'Ciao';
+	}
+	80% {
+		content: '안녕하세요';
+	}
+	90% {
+		content: 'Witam';
+	}
+	100% {
+		content: 'สวัสดี';
+	}
+}

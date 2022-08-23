@@ -9,10 +9,12 @@ import WordPage from "./Components/WordPage";
 function App() {
   const [user, setUser] = useState(null);
   useEffect(() => {
+    console.log("Hello");
     fetch("/me").then((r) => {
       r.json().then((user) => setUser(user));
     });
   }, []);
+  console.log(user);
 
   function handleLogOut() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
