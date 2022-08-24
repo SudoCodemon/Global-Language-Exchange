@@ -83,6 +83,6 @@ production:
   <<: *default
   adapter: postgresql
   encoding: unicode
-  database: GLE_production
-  username: GLE
+  database: d7samrmo1htqie
+  username: xsdzmwidnlanar
   password: <%= ENV["GLE_DATABASE_PASSWORD"] %>
