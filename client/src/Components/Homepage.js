@@ -7,7 +7,6 @@ import "../index.css";
 
 function Homepage({ user, onHandleLogOut }) {
   const [wordList, setWordList] = useState(null);
-  console.log(wordList);
   const history = useHistory();
   useEffect(() => {
     fetch("/words")
@@ -20,7 +19,6 @@ function Homepage({ user, onHandleLogOut }) {
     wordList.sort(
       (a, b) => parseFloat(b.amount_likes) - parseFloat(a.amount_likes)
     );
-  console.log(sortedWords);
 
   function handleCommentClick(e) {
     history.push("/wordpage", e);
@@ -31,7 +29,7 @@ function Homepage({ user, onHandleLogOut }) {
         <HeadingDiv>
           <Title to="/">Global Language Exchange</Title>{" "}
           {user ? (
-            <WelcomeMessage>Welcome! {user && user.username}</WelcomeMessage>
+            <WelcomeMessage>Welcome, {user && user.username}</WelcomeMessage>
           ) : null}
           {user ? (
             <LogoutBtn onClick={onHandleLogOut}> Log Out </LogoutBtn>
